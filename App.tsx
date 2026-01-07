@@ -8,7 +8,7 @@ import { AnimatePresence } from 'framer-motion';
 export type SectionID = 'home' | 'platform' | 'solutions' | 'services' | 'about' | 'reviews' | 'analytics' | 'contact';
 
 const App: React.FC = () => {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   useEffect(() => {
     if (isDarkMode) {
