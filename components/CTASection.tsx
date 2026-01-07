@@ -2,8 +2,14 @@
 import React from 'react';
 import { Mail, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+// Fix: Use SectionID instead of non-existent PageID
+import { SectionID } from '../App';
 
-const CTASection: React.FC = () => {
+interface CTASectionProps {
+  onNavigate: (page: SectionID) => void;
+}
+
+const CTASection: React.FC<CTASectionProps> = ({ onNavigate }) => {
   return (
     <section className="py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,10 +53,16 @@ const CTASection: React.FC = () => {
               transition={{ delay: 0.5 }}
               className="flex flex-col sm:flex-row items-center justify-center gap-4"
             >
-              <button className="w-full sm:w-auto px-10 py-5 bg-white text-gamma-blue font-bold rounded-full hover:bg-gamma-aquamarine hover:text-gamma-dark transition-all shadow-2xl hover:scale-105 active:scale-95">
+              <button 
+                onClick={() => onNavigate('contact')}
+                className="w-full sm:w-auto px-10 py-5 bg-white text-gamma-blue font-bold rounded-full hover:bg-gamma-aquamarine hover:text-gamma-dark transition-all shadow-2xl hover:scale-105 active:scale-95"
+              >
                 Get a Custom Quote
               </button>
-              <button className="w-full sm:w-auto px-10 py-5 bg-gamma-darkBlue/50 text-white font-bold rounded-full border border-white/20 hover:bg-gamma-dark transition-all flex items-center justify-center gap-2 hover:scale-105 active:scale-95">
+              <button 
+                onClick={() => onNavigate('contact')}
+                className="w-full sm:w-auto px-10 py-5 bg-gamma-darkBlue/50 text-white font-bold rounded-full border border-white/20 hover:bg-gamma-dark transition-all flex items-center justify-center gap-2 hover:scale-105 active:scale-95"
+              >
                 Talk to an Expert <ArrowRight size={20} />
               </button>
             </motion.div>
@@ -71,11 +83,6 @@ const CTASection: React.FC = () => {
             animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
             transition={{ duration: 10, repeat: Infinity }}
             className="absolute -top-12 -right-12 w-64 h-64 bg-white/10 rounded-full blur-3xl"
-          />
-          <motion.div 
-            animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.3, 0.2] }}
-            transition={{ duration: 12, repeat: Infinity, delay: 1 }}
-            className="absolute -bottom-12 -left-12 w-64 h-64 bg-gamma-aquamarine/20 rounded-full blur-3xl"
           />
         </motion.div>
       </div>

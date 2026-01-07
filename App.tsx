@@ -1,19 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Features from './components/Features';
-import Analytics from './components/Analytics';
-import GamesCarousel from './components/GamesCarousel';
-import Services from './components/Services';
-import About from './components/About';
-import Testimonials from './components/Testimonials';
-import AdvancedAnalytics from './components/AdvancedAnalytics';
-import CTASection from './components/CTASection';
 import Footer from './components/Footer';
+import HomePage from './pages/HomePage';
+import { AnimatePresence } from 'framer-motion';
+
+export type SectionID = 'home' | 'platform' | 'solutions' | 'services' | 'about' | 'reviews' | 'analytics' | 'contact';
 
 const App: React.FC = () => {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -25,21 +20,33 @@ const App: React.FC = () => {
 
   const toggleTheme = () => setIsDarkMode(prev => !prev);
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80; // Navbar height
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen transition-colors duration-300 bg-white dark:bg-gamma-dark text-gamma-dark dark:text-white overflow-x-hidden">
-      <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+      <Navbar 
+        isDarkMode={isDarkMode} 
+        toggleTheme={toggleTheme} 
+        onScrollTo={scrollToSection} 
+      />
       <main>
-        <Hero />
-        <Features />
-        <Analytics />
-        <GamesCarousel />
-        <Services />
-        <About />
-        <Testimonials />
-        <AdvancedAnalytics />
-        <CTASection />
+        <HomePage onScrollTo={scrollToSection} />
       </main>
-      <Footer />
+      <Footer onScrollTo={scrollToSection} />
     </div>
   );
 };

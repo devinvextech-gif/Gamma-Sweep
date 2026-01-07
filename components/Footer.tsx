@@ -3,25 +3,48 @@ import React from 'react';
 import { Twitter, Linkedin, Facebook, Instagram } from 'lucide-react';
 import Logo from './Logo';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  onScrollTo: (id: string) => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ onScrollTo }) => {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = [
     {
       title: 'Platform',
-      links: ['Core Engine', 'Game Library', 'Integrations', 'White Label', 'Managed Services']
+      links: [
+        { name: 'Core Engine', id: 'platform' },
+        { name: 'Game Library', id: 'home' },
+        { name: 'Integrations', id: 'platform' },
+        { name: 'Solutions', id: 'solutions' },
+        { name: 'Managed Services', id: 'services' }
+      ]
     },
     {
       title: 'Company',
-      links: ['About Us', 'Careers', 'Brand Assets', 'Blog', 'Contact']
+      links: [
+        { name: 'About Us', id: 'about' },
+        { name: 'Client Reviews', id: 'reviews' },
+        { name: 'Analytics', id: 'analytics' },
+        { name: 'Contact Sales', id: 'contact' }
+      ]
     },
     {
       title: 'Legal',
-      links: ['Privacy Policy', 'Terms of Service', 'Cookie Policy', 'Security Standards', 'Compliance']
+      links: [
+        { name: 'Privacy Policy', id: 'home' },
+        { name: 'Terms of Service', id: 'home' },
+        { name: 'Compliance', id: 'platform' }
+      ]
     },
     {
       title: 'Support',
-      links: ['Help Center', 'API Docs', 'Status Page', 'Ticketing System', 'Dev Community']
+      links: [
+        { name: 'Help Center', id: 'contact' },
+        { name: 'API Docs', id: 'platform' },
+        { name: 'System Status', id: 'analytics' }
+      ]
     }
   ];
 
@@ -30,7 +53,7 @@ const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-6 gap-12 mb-20">
           <div className="col-span-2">
-            <div className="mb-6">
+            <div className="mb-6 cursor-pointer" onClick={() => onScrollTo('home')}>
               <Logo variant="L" className="mb-4" />
             </div>
             <p className="text-gray-500 dark:text-gray-400 mb-8 max-w-xs leading-relaxed">
@@ -38,7 +61,7 @@ const Footer: React.FC = () => {
             </p>
             <div className="flex gap-4">
               {[Twitter, Linkedin, Facebook, Instagram].map((Icon, i) => (
-                <a key={i} href="#" className="w-10 h-10 rounded-full border border-gray-100 dark:border-white/10 flex items-center justify-center hover:bg-gamma-blue hover:text-white transition-all shadow-sm">
+                <a key={i} href="#" onClick={(e) => e.preventDefault()} className="w-10 h-10 rounded-full border border-gray-100 dark:border-white/10 flex items-center justify-center hover:bg-gamma-blue hover:text-white transition-all shadow-sm">
                   <Icon size={18} />
                 </a>
               ))}
@@ -51,7 +74,12 @@ const Footer: React.FC = () => {
               <ul className="space-y-4">
                 {section.links.map((link, j) => (
                   <li key={j}>
-                    <a href="#" className="text-gray-500 dark:text-gray-400 hover:text-gamma-blue transition-colors text-sm">{link}</a>
+                    <button 
+                      onClick={() => onScrollTo(link.id)}
+                      className="text-gray-500 dark:text-gray-400 hover:text-gamma-blue transition-colors text-sm text-left"
+                    >
+                      {link.name}
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -67,10 +95,6 @@ const Footer: React.FC = () => {
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-gamma-aquamarine animate-pulse"></span>
               <span className="text-xs font-bold uppercase tracking-widest text-gray-600 dark:text-gray-300">Network Status: Operational</span>
-            </div>
-            <div className="flex items-center gap-4 text-xs font-bold uppercase text-gray-400">
-              <span className="text-gray-400 dark:text-gray-500">HQ:</span>
-              <span className="text-gray-600 dark:text-gray-300">San Francisco, CA</span>
             </div>
           </div>
         </div>

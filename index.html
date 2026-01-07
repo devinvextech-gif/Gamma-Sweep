@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GammaSweep | Premium Sweepstakes Software</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Kanit:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         darkMode: 'class',
@@ -23,16 +23,24 @@
               }
             },
             fontFamily: {
-              sans: ['Inter', 'sans-serif'],
+              // Body font from brand book
+              sans: ['Roboto', 'sans-serif'],
+              // Header font proxy for Akceler (Kanit matches the geometric, high-impact italic look)
+              header: ['Kanit', 'sans-serif'],
             },
             animation: {
               'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
               'float': 'float 6s ease-in-out infinite',
+              'scroll-left': 'scroll-left 40s linear infinite',
             },
             keyframes: {
               float: {
                 '0%, 100%': { transform: 'translateY(0)' },
                 '50%': { transform: 'translateY(-20px)' },
+              },
+              'scroll-left': {
+                '0%': { transform: 'translateX(0)' },
+                '100%': { transform: 'translateX(-50%)' },
               }
             }
           }
@@ -44,12 +52,18 @@
         scroll-behavior: smooth;
       }
       body {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Roboto', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      h1, h2, h3, h4, .font-header {
+        font-family: 'Kanit', sans-serif;
+        font-style: italic;
       }
       .glass {
         background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
       }
       .dark .glass {
         background: rgba(21, 24, 47, 0.8);
@@ -60,6 +74,19 @@
       .no-scrollbar {
         -ms-overflow-style: none;
         scrollbar-width: none;
+      }
+      /* Custom utility for Akceler B-bold effect */
+      .text-akceler-bold {
+        font-family: 'Kanit', sans-serif;
+        font-weight: 900;
+        font-style: italic;
+        letter-spacing: -0.02em;
+      }
+      .text-akceler-alt {
+        font-family: 'Kanit', sans-serif;
+        font-weight: 700;
+        font-style: italic;
+        opacity: 0.9;
       }
     </style>
   <script type="importmap">

@@ -7,8 +7,8 @@ interface LogoProps {
 }
 
 const Logo: React.FC<LogoProps> = ({ variant = 'L', className = "" }) => {
-  // Common styles
-  const textItalic = "italic uppercase font-black tracking-tighter";
+  // Common styles using the brand fonts
+  const textItalic = "text-akceler-bold uppercase tracking-tighter";
   const gammaColor = "text-gamma-dark dark:text-white transition-colors duration-300";
   const sweepColor = "text-gamma-aquamarine";
   const triangleColor = "fill-gamma-dark dark:fill-white transition-colors duration-300";

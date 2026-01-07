@@ -25,7 +25,7 @@ const testimonials = [
 
 const Testimonials: React.FC = () => {
   return (
-    <section id="testimonials" className="py-24 bg-gamma-light dark:bg-gamma-darkBlue/10">
+    <section id="reviews" className="py-24 bg-gamma-light dark:bg-gamma-darkBlue/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-gamma-blue font-bold tracking-widest uppercase text-sm mb-4">Enterprise Feedback</h2>
@@ -34,7 +34,7 @@ const Testimonials: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((t, i) => (
-            <div key={i} className="bg-white dark:bg-gamma-dark p-8 rounded-3xl shadow-xl shadow-gray-200/50 dark:shadow-none relative">
+            <div key={i} className="bg-white dark:bg-gamma-dark p-8 rounded-3xl shadow-xl shadow-gray-200/50 dark:shadow-none relative border border-gray-100 dark:border-white/10">
               <div className="absolute top-8 right-8 text-gamma-blue/10">
                 <Quote size={48} />
               </div>
